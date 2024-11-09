@@ -12,7 +12,7 @@ namespace Maneuver.ScreenManager
     public class ScreenManager : MonoBehaviour, IScreenManager
     {
         // Collection of screens prefabs
-        [SerializeField] private ScreenBase[] _screens;
+        [SerializeField] private ScreenInstaller[] _screenPrefabs;
         // Collection of screen instances
         private List<ScreenBase> _screensRuntime = new();
 
@@ -49,7 +49,7 @@ namespace Maneuver.ScreenManager
         /// </summary>
         private void InitScreen()
         {
-            GetOrCreate(_screens[0].GetType());
+            GetOrCreate(_screenPrefabs[0].View.GetType()).Show();
         }
 
         /// <summary>
@@ -73,8 +73,9 @@ namespace Maneuver.ScreenManager
 
                 if (screenInstance == null)
                 {
-                    var prefab = _screens.Where(t => t is T).FirstOrDefault() as T;
+                    var prefab = _screenPrefabs.Where(t => t.View is T).FirstOrDefault();
                     T instantiateScreen = (T)_screenFactory.Create(prefab);
+
                     instantiateScreen.transform.SetParent(transform);
 
                     _screensRuntime.Add(instantiateScreen);
@@ -111,7 +112,7 @@ namespace Maneuver.ScreenManager
 
             if (screenInstance == null)
             {
-                var prefab = _screens.Where(t => t.GetType().Equals(desiredType)).FirstOrDefault();
+                var prefab = _screenPrefabs.Where(t => t.View.GetType().Equals(desiredType)).FirstOrDefault();
                 ScreenBase instantiateScreen = _screenFactory.Create(prefab);
 
                 instantiateScreen.transform.SetParent(transform);

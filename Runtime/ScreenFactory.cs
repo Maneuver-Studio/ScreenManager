@@ -32,7 +32,9 @@ namespace Maneuver.ScreenManager
         /// <returns>Instantiate object of prefab</returns>
         public ScreenBase Create(Object prefab)
         {
-            return _container.InstantiatePrefabForComponent<ScreenBase>(prefab);
+            var screenInstance = _container.InstantiatePrefabForComponent<ScreenBase>(prefab);
+
+            return screenInstance;
         }
     }
 }

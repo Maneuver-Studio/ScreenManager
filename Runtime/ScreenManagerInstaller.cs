@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Maneuver.ScreenManager
 {
-    public class InstallerScreenManager : MonoInstaller
+    public class ScreenManagerInstaller : MonoInstaller
     {
         // Prefab of Screen Manager
         [SerializeField] private ScreenManager _screenManager;

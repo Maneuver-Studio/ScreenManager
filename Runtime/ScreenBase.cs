@@ -40,6 +40,8 @@ namespace Maneuver.ScreenManager
         {
             _uiDocument = GetComponent<UIDocument>();
             _root = _uiDocument.rootVisualElement;
+
+            Hide();
         }
 
         #endregion
@@ -54,7 +56,7 @@ namespace Maneuver.ScreenManager
         /// </summary>
         public virtual void Show()
         {
-            gameObject.SetActive(true);
+            _root.style.display = DisplayStyle.Flex;
         }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Maneuver.ScreenManager
         /// </summary>
         public virtual void Hide()
         {
-            gameObject.SetActive(false);
+            _root.style.display = DisplayStyle.None;
         }
 
     }
