@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Maneuver.ScreenManager
@@ -49,7 +50,6 @@ namespace Maneuver.ScreenManager
         /// </summary>
         private void InitScreen()
         {
-            GetOrCreate(_screenPrefabs[0].View.GetType()).Show();
         }
 
         /// <summary>
