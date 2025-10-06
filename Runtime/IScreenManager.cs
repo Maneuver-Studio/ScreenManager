@@ -33,5 +33,7 @@ namespace Maneuver.ScreenManager
         /// </summary>
         /// <typeparam name="T">Type of screen</typeparam>
         void Close<T>() where T : ScreenBase;
+
+        ScreenBase Close(Type desiredType);
     }
 }

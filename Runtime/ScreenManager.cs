@@ -174,5 +174,24 @@ namespace Maneuver.ScreenManager
 
             if (screenInstance != null) Destroy(screenInstance.gameObject);
         }
+
+        public ScreenBase Close(Type screenType)
+        {
+            ScreenBase screenInstance = null;
+            foreach (var scrRtm in _screensRuntime)
+            {
+                if (screenType.IsInstanceOfType(scrRtm))
+                {
+                    screenInstance = scrRtm;
+                    break;
+                }
+            }
+
+            _screensRuntime.RemoveAll(t => t == null || screenType.IsInstanceOfType(t));
+            if (screenInstance != null)
+                Destroy(screenInstance.gameObject);
+
+            return screenInstance;
+        }
     }
 }
